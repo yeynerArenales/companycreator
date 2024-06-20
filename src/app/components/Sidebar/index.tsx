@@ -3,6 +3,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
+  width: 50%;
+  height: auto;
+  display: flex;
+`;
+
+const ButtonsBox = styled.div`
   width: 33px;
   height: 155px;
   background: #d9d9d970;
@@ -29,17 +35,51 @@ const Button = styled.button<{ selected?: boolean }>`
   font-weight: 500;
   font-size: 14px;
 `;
+const SubTitlesBox = styled.div`
+  width: 200px;
+  height: 155px;
+  margin: 25px 0 00px 80px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 30px;
+`;
+
+const SubTitle = styled.h2`
+width: 100%;
+  color: black;
+  font-weight: 500;
+  margin: 0;
+  font-size: 16px;
+`;
 
 const Sidebar = () => {
   const buttons: number[] = [1, 2, 3];
+  const subtitles: string[] = [
+    "Business structure",
+    "Contact person",
+    "Review & submit",
+  ];
   const [form, setForm] = useState(1);
   return (
     <Container>
-      {buttons.map((b) => (
-        <Button selected={b == form && true} onClick={() => setForm(b)} key={b}>
-          {b}
-        </Button>
-      ))}
+      <ButtonsBox>
+        {buttons.map((b) => (
+          <Button
+            selected={b == form && true}
+            onClick={() => setForm(b)}
+            key={b}
+          >
+            {b}
+          </Button>
+        ))}
+      </ButtonsBox>
+      <SubTitlesBox>
+        {subtitles.map((sub) => (
+          <SubTitle key={sub}>{sub}</SubTitle>
+        ))}
+      </SubTitlesBox>
     </Container>
   );
 };
