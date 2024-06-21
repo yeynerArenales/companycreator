@@ -1,9 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import styled from "styled-components";
+import BusinessForm from "../Forms/BusinessForm";
 
 const Container = styled.div`
-  width: 50%;
+  width: 30%;
   height: auto;
   display: flex;
 `;
@@ -47,11 +48,16 @@ const SubTitlesBox = styled.div`
 `;
 
 const SubTitle = styled.h2`
-width: 100%;
+  width: 100%;
   color: black;
   font-weight: 500;
   margin: 0;
   font-size: 16px;
+`;
+
+const Test = styled.div`
+  width: 100%;
+  display: flex;
 `;
 
 const Sidebar = () => {
@@ -63,24 +69,28 @@ const Sidebar = () => {
   ];
   const [form, setForm] = useState(1);
   return (
-    <Container>
-      <ButtonsBox>
-        {buttons.map((b) => (
-          <Button
-            selected={b == form && true}
-            onClick={() => setForm(b)}
-            key={b}
-          >
-            {b}
-          </Button>
-        ))}
-      </ButtonsBox>
-      <SubTitlesBox>
-        {subtitles.map((sub) => (
-          <SubTitle key={sub}>{sub}</SubTitle>
-        ))}
-      </SubTitlesBox>
-    </Container>
+    <Test>
+      <Container>
+        <ButtonsBox>
+          {buttons.map((b) => (
+            <Button
+              selected={b == form && true}
+              onClick={() => setForm(b)}
+              key={b}
+            >
+              {b}
+            </Button>
+          ))}
+        </ButtonsBox>
+        <SubTitlesBox>
+          {subtitles.map((sub) => (
+            <SubTitle key={sub}>{sub}</SubTitle>
+          ))}
+        </SubTitlesBox>
+      </Container>
+
+      <BusinessForm />
+    </Test>
   );
 };
 
