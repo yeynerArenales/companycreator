@@ -1,13 +1,17 @@
 "use client";
 import React from "react";
+
+// Style
 import styled from "styled-components";
+
+// Form
+import { Controller } from "react-hook-form";
 
 interface CustomSelectProps {
   label?: string;
-  placeholder: string;
   options: string[];
-  selectedOption: string;
-  onSelect: (option: string) => void;
+  control: any;
+  name: string;
 }
 const Wrapper = styled.div`
   display: flex;
@@ -54,25 +58,26 @@ const Option = styled.option`
 
 export const CustomSelect: React.FC<CustomSelectProps> = ({
   label = null,
-  placeholder,
   options,
-  selectedOption,
-  onSelect,
+  control,
+  name,
 }) => {
   return (
     <Wrapper>
       {label && <Label>{label}</Label>}
-      <Select
-        value={selectedOption}
-        onChange={(event) => onSelect(event.target.value)}
-      >
-        <Option value="">{placeholder}</Option>
-        {options.map((option) => (
-          <Option key={option} value={option}>
-            {option}
-          </Option>
-        ))}
-      </Select>
+      <Controller
+        control={control}
+        name={name}
+        render={({ field }) => (
+          <Select {...field}>
+            {options.map((option) => (
+              <Option key={option} value={option}>
+                {option}
+              </Option>
+            ))}
+          </Select>
+        )}
+      />
     </Wrapper>
   );
 };

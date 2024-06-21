@@ -5,8 +5,8 @@ import styled from "styled-components";
 interface CustomTextFieldProps {
   label?: string;
   placeholder: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  name: string;
+  register: any;
 }
 
 const Wrapper = styled.div`
@@ -36,17 +36,13 @@ const InputStyled = styled.input`
 export const CustomTextField: React.FC<CustomTextFieldProps> = ({
   label = null,
   placeholder,
-  value,
-  onChange,
+  register,
+  name,
 }) => {
   return (
     <Wrapper>
       {label && <Label>{label}</Label>}
-      <InputStyled
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-      />
+      <InputStyled placeholder={placeholder} {...register(name)} />
     </Wrapper>
   );
 };

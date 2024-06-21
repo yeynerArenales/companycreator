@@ -22,9 +22,6 @@ const Button = styled.button<{ selected?: boolean }>`
   font-size: 14px;
 `;
 
-export const CustomButton: React.FC<CustomButtonProps> = ({
-  label,
-  onClick,
-}) => {
-  return <Button onClick={onClick}>{label}</Button>;
+export const CustomButton: React.FC<CustomButtonProps> = ({ label }) => {
+  return <Button type="submit">{label}</Button>;
 };
