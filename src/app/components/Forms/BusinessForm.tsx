@@ -11,6 +11,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { CustomSelect, CustomTextField } from "../Inputs";
 import { CustomButton } from "../Buttons";
 
+// validations
+import { yupResolver } from "@hookform/resolvers/yup";
+import { IBusinessForm, businessFormSchema } from "./validations";
+
 const Form = styled.form`
   width: 410px;
   margin: 25px 0;
@@ -28,16 +32,14 @@ const InputBox = styled.div`
 `;
 
 const BusinessForm = ({}) => {
-  const { register, handleSubmit, control } = useForm({
-    defaultValues: {
-      businessName: "",
-      type: "",
-      address: "",
-      address_2: "",
-      city: "",
-      state: "",
-      zip: "",
-    },
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    criteriaMode: "all",
+    resolver: yupResolver(businessFormSchema),
   });
 
   const onSubmit: SubmitHandler<any> = (data) => console.log(data);
@@ -49,6 +51,7 @@ const BusinessForm = ({}) => {
         placeholder="Registered business name"
         register={register}
         name="businessName"
+        errors={errors}
       />
 
       <CustomSelect
@@ -56,6 +59,7 @@ const BusinessForm = ({}) => {
         options={["1", "2", "3"]}
         control={control}
         name="type"
+        errors={errors}
       />
 
       <CustomTextField
@@ -63,15 +67,22 @@ const BusinessForm = ({}) => {
         placeholder="Address line 1"
         register={register}
         name="address"
+        errors={errors}
       />
 
       <CustomTextField
-        placeholder="Address line 2"
+        placeholder="Address line 2 (Optional)"
         name="address_2"
         register={register}
+        errors={errors}
       />
 
-      <CustomTextField placeholder="City" name="city" register={register} />
+      <CustomTextField
+        placeholder="City"
+        name="city"
+        register={register}
+        errors={errors}
+      />
 
       <DoubleInput>
         <InputBox>
@@ -79,11 +90,17 @@ const BusinessForm = ({}) => {
             options={["1", "2", "3"]}
             control={control}
             name="state"
+            errors={errors}
           />
         </InputBox>
 
         <InputBox>
-          <CustomTextField name="zip" placeholder="Zip" register={register} />
+          <CustomTextField
+            name="zip"
+            placeholder="Zip"
+            register={register}
+            errors={errors}
+          />
         </InputBox>
       </DoubleInput>
 

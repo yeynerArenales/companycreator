@@ -7,11 +7,15 @@ import styled from "styled-components";
 // Form
 import { Controller } from "react-hook-form";
 
+// Errors
+import { InputErrors } from "./InputErrors";
+
 interface CustomSelectProps {
   label?: string;
   options: string[];
   control: any;
   name: string;
+  errors: any;
 }
 const Wrapper = styled.div`
   display: flex;
@@ -61,6 +65,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
   options,
   control,
   name,
+  errors,
 }) => {
   return (
     <Wrapper>
@@ -78,6 +83,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
           </Select>
         )}
       />
+      {errors[name] && <InputErrors message={errors[name].message}/>}
     </Wrapper>
   );
 };

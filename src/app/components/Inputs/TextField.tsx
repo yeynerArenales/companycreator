@@ -1,12 +1,18 @@
 "use client";
 import React from "react";
+
+// Style
 import styled from "styled-components";
+
+// Errors
+import { InputErrors } from "./InputErrors";
 
 interface CustomTextFieldProps {
   label?: string;
   placeholder: string;
   name: string;
   register: any;
+  errors: any;
 }
 
 const Wrapper = styled.div`
@@ -38,11 +44,13 @@ export const CustomTextField: React.FC<CustomTextFieldProps> = ({
   placeholder,
   register,
   name,
+  errors,
 }) => {
   return (
     <Wrapper>
       {label && <Label>{label}</Label>}
       <InputStyled placeholder={placeholder} {...register(name)} />
+      {errors[name] && <InputErrors message={errors[name].message} />}
     </Wrapper>
   );
 };
