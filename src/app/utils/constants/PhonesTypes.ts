@@ -1,4 +1,4 @@
-const PhonesTypes = [
+export const PhonesTypes = [
   {
     name: "United States",
     phone_code: "+1",

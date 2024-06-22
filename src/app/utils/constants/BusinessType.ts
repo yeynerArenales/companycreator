@@ -1,4 +1,4 @@
-const BusinessTypes: string[] = [
+export const BusinessTypes: string[] = [
   "Sole Proprietorship",
   "General Partnership (GP)",
   "Limited Partnership (LP)",
