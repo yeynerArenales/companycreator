@@ -1,23 +1,18 @@
-import { FC } from 'react';
+import { FC } from "react";
 
 // Style
 import styled from "styled-components";
 
-
 interface Props {
-    message: string;
+  message: string;
 }
 
 const ErrorMessage = styled.p`
-    color: #F43C3C;
-    font-size: 14px;
-    margin: 10px 0;
-`
+  color: #f43c3c;
+  font-size: 14px;
+  margin: 10px 0;
+`;
 
 export const InputErrors: FC<Props> = ({ message }): JSX.Element => {
-  return (
-    <ErrorMessage>
-        {message}
-    </ErrorMessage>
-  );
+  return <ErrorMessage>{message}</ErrorMessage>;
 };

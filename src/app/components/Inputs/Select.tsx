@@ -83,7 +83,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
           </Select>
         )}
       />
-      {errors[name] && <InputErrors message={errors[name].message}/>}
+      {errors[name] && <InputErrors message={errors[name].message} />}
     </Wrapper>
   );
 };

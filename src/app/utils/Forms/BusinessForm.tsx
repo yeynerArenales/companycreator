@@ -13,7 +13,7 @@ import { CustomButton } from "../../components/Buttons";
 
 // validations
 import { yupResolver } from "@hookform/resolvers/yup";
-import { IBusinessForm, businessFormSchema } from "./validations";
+import { businessFormSchema } from "./validations";
 
 const Form = styled.form`
   width: 410px;
@@ -31,7 +31,7 @@ const InputBox = styled.div`
   width: 45%;
 `;
 
-const BusinessForm = ({}) => {
+export const BusinessForm = ({}) => {
   const {
     register,
     handleSubmit,
@@ -109,5 +109,3 @@ const BusinessForm = ({}) => {
     </Form>
   );
 };
-
-export default BusinessForm;

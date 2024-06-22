@@ -1,7 +1,12 @@
 "use client";
 import React, { useState } from "react";
+
+// Style
 import styled from "styled-components";
-import BusinessForm from "../../utils/Forms/BusinessForm";
+
+// Components
+import { BusinessForm } from "../../utils/Forms";
+import { SidebarButton } from "../Buttons";
 
 const Container = styled.div`
   width: 30%;
@@ -22,20 +27,6 @@ const ButtonsBox = styled.div`
   align-items: center;
 `;
 
-const Button = styled.button<{ selected?: boolean }>`
-  cursor: pointer;
-  width: 26px;
-  height: 26px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  background: ${(props) => (props.selected ? "#4A3AFF" : "white")};
-  color: ${(props) => (props.selected ? "white" : "black")};
-  border-radius: 100%;
-  font-weight: 500;
-  font-size: 14px;
-`;
 const SubTitlesBox = styled.div`
   width: 200px;
   height: 155px;
@@ -73,13 +64,12 @@ const Sidebar = () => {
       <Container>
         <ButtonsBox>
           {buttons.map((b) => (
-            <Button
+            <SidebarButton
               selected={b == form && true}
               onClick={() => setForm(b)}
               key={b}
-            >
-              {b}
-            </Button>
+              label={`${b}`}
+            />
           ))}
         </ButtonsBox>
         <SubTitlesBox>

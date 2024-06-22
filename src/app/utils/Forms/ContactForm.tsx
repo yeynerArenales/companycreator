@@ -34,7 +34,7 @@ const InputBox = styled.div`
   }
 `;
 
-const ContactForm = ({}) => {
+export const ContactForm = ({}) => {
   const {
     register,
     handleSubmit,
@@ -81,5 +81,3 @@ const ContactForm = ({}) => {
     </Form>
   );
 };
-
-export default ContactForm;
