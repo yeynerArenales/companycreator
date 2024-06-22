@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import BusinessForm from "./components/Forms/BusinessForm";
+import BusinessForm from "./utils/Forms/BusinessForm";
 
 export default function Home() {
   return (

@@ -8,8 +8,8 @@ import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 // Components
-import { CustomTextField } from "../Inputs";
-import { CustomButton } from "../Buttons";
+import { CustomTextField } from "../../components/Inputs";
+import { CustomButton } from "../../components/Buttons";
 
 // validations
 import { yupResolver } from "@hookform/resolvers/yup";

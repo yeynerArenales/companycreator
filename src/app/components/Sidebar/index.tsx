@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styled from "styled-components";
-import BusinessForm from "../Forms/BusinessForm";
+import BusinessForm from "../../utils/Forms/BusinessForm";
 
 const Container = styled.div`
   width: 30%;
