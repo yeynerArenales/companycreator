@@ -13,6 +13,7 @@ interface CustomTextFieldProps {
   name: string;
   register: any;
   errors: any;
+  type?: string;
 }
 
 const Wrapper = styled.div`
@@ -45,11 +46,12 @@ export const CustomTextField: React.FC<CustomTextFieldProps> = ({
   register,
   name,
   errors,
+  type = "text",
 }) => {
   return (
     <Wrapper>
       {label && <Label>{label}</Label>}
-      <InputStyled placeholder={placeholder} {...register(name)} />
+      <InputStyled placeholder={placeholder} type={type} {...register(name)} />
       {errors[name] && <InputErrors message={errors[name].message} />}
     </Wrapper>
   );

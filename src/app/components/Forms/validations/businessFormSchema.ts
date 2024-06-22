@@ -7,7 +7,7 @@ export const businessFormSchema = object().shape({
   address_2: string(),
   city: string().required("City is required"),
   state: string().required("State is required"),
-  zip: string().required("Zip is required"),
+  zip: string().required("Zip is required").max(5),
 });
 
 export interface IBusinessForm {

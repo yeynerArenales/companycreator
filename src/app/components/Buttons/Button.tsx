@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 interface CustomButtonProps {
   label: string;
-  onClick: () => void;
 }
 
 const Button = styled.button<{ selected?: boolean }>`

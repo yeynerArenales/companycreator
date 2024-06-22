@@ -100,16 +100,12 @@ const BusinessForm = ({}) => {
             placeholder="Zip"
             register={register}
             errors={errors}
+            type="number"
           />
         </InputBox>
       </DoubleInput>
 
-      <CustomButton
-        label="Continue"
-        onClick={() => {
-          console.log("click");
-        }}
-      />
+      <CustomButton label="Continue" />
     </Form>
   );
 };
