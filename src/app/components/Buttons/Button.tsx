@@ -6,9 +6,10 @@ import styled from "styled-components";
 
 interface CustomButtonProps {
   label: string;
+  marginTop?: string;
 }
 
-const Button = styled.button<{ selected?: boolean }>`
+const Button = styled.button<{ marginTop?: string }>`
   cursor: pointer;
   width: 100%;
   height: 34px;
@@ -21,8 +22,16 @@ const Button = styled.button<{ selected?: boolean }>`
   border-radius: 8px;
   font-weight: 400;
   font-size: 14px;
+  margin-top: ${(props) => (props.marginTop ? props.marginTop : 0)};
 `;
 
-export const CustomButton: React.FC<CustomButtonProps> = ({ label }) => {
-  return <Button type="submit">{label}</Button>;
+export const CustomButton: React.FC<CustomButtonProps> = ({
+  label,
+  marginTop = "",
+}) => {
+  return (
+    <Button marginTop={marginTop} type="submit">
+      {label}
+    </Button>
+  );
 };

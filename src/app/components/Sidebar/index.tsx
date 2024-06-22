@@ -7,6 +7,7 @@ import styled from "styled-components";
 // Components
 import { BusinessForm } from "../../utils/Forms";
 import { SidebarButton } from "../Buttons";
+import { Review } from "../Review";
 
 const Container = styled.div`
   width: 30%;
@@ -79,7 +80,7 @@ const Sidebar = () => {
         </SubTitlesBox>
       </Container>
 
-      <BusinessForm />
+      <Review />
     </Test>
   );
 };
