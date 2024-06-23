@@ -1,13 +1,5 @@
-"use client"
-import React from "react";
-import Header from "@/components/organism/Header";
-import Sidebar from "@/components/molecules/Sidebar";
+import { Layout } from '@/components/layout'
 
 export default function Home() {
-  return (
-    <>
-      <Header></Header>
-      <Sidebar></Sidebar>
-    </>
-  );
+  return <Layout />
 }

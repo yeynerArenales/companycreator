@@ -1,19 +1,19 @@
-"use client";
-import React, { useState } from "react";
+import React from 'react'
 
 // Style
-import styled from "styled-components";
+import styled from 'styled-components'
 
 // Components
-import { BusinessForm } from "@/components/organism/Forms";
-import { SidebarButton } from "@/components/atoms/Buttons";
-import { Review } from "../Review";
+import { SidebarButton } from '../../atoms/Buttons'
+import { useAppSelector } from '@/redux/hooks'
+import { useDispatch } from 'react-redux'
+import { setStep } from '@/redux/features/companyProcessSlice'
 
 const Container = styled.div`
   width: 30%;
   height: auto;
   display: flex;
-`;
+`
 
 const ButtonsBox = styled.div`
   width: 33px;
@@ -26,7 +26,7 @@ const ButtonsBox = styled.div`
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-`;
+`
 
 const SubTitlesBox = styled.div`
   width: 200px;
@@ -37,7 +37,7 @@ const SubTitlesBox = styled.div`
   flex-direction: column;
   align-items: center;
   margin-left: 30px;
-`;
+`
 
 const SubTitle = styled.h2`
   width: 100%;
@@ -45,44 +45,37 @@ const SubTitle = styled.h2`
   font-weight: 500;
   margin: 0;
   font-size: 16px;
-`;
-
-const Test = styled.div`
-  width: 100%;
-  display: flex;
-`;
+`
 
 const Sidebar = () => {
-  const buttons: number[] = [1, 2, 3];
+  const dispatch = useDispatch()
+  const { step } = useAppSelector((state) => state.companyProccessReducer)
+
+  const buttons: number[] = [1, 2, 3]
   const subtitles: string[] = [
-    "Business structure",
-    "Contact person",
-    "Review & submit",
-  ];
-  const [form, setForm] = useState(1);
+    'Business structure',
+    'Contact person',
+    'Review & submit'
+  ]
   return (
-    <Test>
-      <Container>
-        <ButtonsBox>
-          {buttons.map((b) => (
-            <SidebarButton
-              selected={b == form && true}
-              onClick={() => setForm(b)}
-              key={b}
-              label={`${b}`}
-            />
-          ))}
-        </ButtonsBox>
-        <SubTitlesBox>
-          {subtitles.map((sub) => (
-            <SubTitle key={sub}>{sub}</SubTitle>
-          ))}
-        </SubTitlesBox>
-      </Container>
+    <Container>
+      <ButtonsBox>
+        {buttons.map((b) => (
+          <SidebarButton
+            selected={b == step && true}
+            onClick={() => dispatch(setStep(b))}
+            key={b}
+            label={`${b}`}
+          />
+        ))}
+      </ButtonsBox>
+      <SubTitlesBox>
+        {subtitles.map((sub) => (
+          <SubTitle key={sub}>{sub}</SubTitle>
+        ))}
+      </SubTitlesBox>
+    </Container>
+  )
+}
 
-      <Review />
-    </Test>
-  );
-};
-
-export default Sidebar;
+export default Sidebar
