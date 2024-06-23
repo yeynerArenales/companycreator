@@ -48,10 +48,18 @@ export const companyProcessSlice = createSlice({
     setStatus: (state, action) => {
       state.status = action.payload;
     },
+    setInitialState: (state) => {
+      state = initialState;
+    },
   },
 });
 
-export const { setStep, setBussinesForm, setContactForm, setStatus } =
-  companyProcessSlice.actions;
+export const {
+  setStep,
+  setBussinesForm,
+  setContactForm,
+  setStatus,
+  setInitialState,
+} = companyProcessSlice.actions;
 
 export default companyProcessSlice.reducer;

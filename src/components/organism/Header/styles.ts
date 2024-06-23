@@ -16,7 +16,7 @@ export const Title = styled.h1`
   margin: 0;
 `;
 
-export const Badge = styled.div<{ status?: string }>`
+export const Badge = styled.div<{ $status?: string }>`
   width: 75px;
   height: 18px;
   background-color: #80808014;
@@ -24,13 +24,15 @@ export const Badge = styled.div<{ status?: string }>`
   text-align: center;
   margin: 15px 0 0 20px;
   color: ${(props) => {
-    switch (props.status) {
+    switch (props.$status) {
       case "progress":
         return "#FFA500";
       case "success":
         return "#008000";
       case "error":
         return "#FF0000";
+      default:
+        return "white";
     }
   }};
 `;

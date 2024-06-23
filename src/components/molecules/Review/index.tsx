@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Components
 import { CustomButton } from "../../atoms/Buttons";
@@ -18,7 +18,10 @@ import { states } from "@/utils/constants";
 import { useAppSelector } from "@/redux/hooks";
 import { usePostCompanyMutation } from "@/redux/services/companyApi";
 import { useDispatch } from "react-redux";
-import { setStatus } from "@/redux/features/companyProcessSlice";
+import {
+  setStatus,
+  setInitialState,
+} from "@/redux/features/companyProcessSlice";
 
 interface ApiResponse {
   status: string;
@@ -40,29 +43,42 @@ export const Review = ({}) => {
   const [postCompany, { isLoading, data, error }] = usePostCompanyMutation();
   const [apiMessage, setApiMessage] = useState<string>("");
 
+  const createFieldsForApi = () => ({
+    name,
+    type,
+    address: {
+      line1: address,
+      line2: optionalAddress,
+      city,
+      state,
+      zip,
+    },
+    contact: {
+      firstName,
+      lastName,
+      email,
+    },
+  });
+
   const handleSubmit = async () => {
-    try {
-      const fields = {
-        name,
-        type,
-        address: {
-          line1: address,
-          line2: optionalAddress,
-          city,
-          state,
-          zip,
-        },
-        contact: {
-          firstName,
-          lastName,
-          email,
-        },
-      };
-      handleApiResponse(await postCompany(fields).unwrap());
-    } catch (err) {
-      console.error(err);
+    if (status === "success") {
+      setInitialState();
+    } else {
+      try {
+        handleApiResponse(await postCompany(createFieldsForApi()).unwrap());
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
+
+  useEffect(() => {
+    if (error?.status === "500") {
+      dispatch(setStatus("error"));
+      setApiMessage(error.message);
+    }
+    console.log(error);
+  }, [error]);
 
   const handleApiResponse = ({ status, message }: ApiResponse) => {
     switch (status) {
@@ -109,7 +125,7 @@ export const Review = ({}) => {
         <Key>Type:</Key>
         <Value>{type}</Value>
       </BoxProperties>
-      <BoxProperties bottom>
+      <BoxProperties $bottom>
         <Key>Address:</Key>
         <Value>{addressformated}</Value>
       </BoxProperties>
@@ -123,7 +139,7 @@ export const Review = ({}) => {
         <Key>Email:</Key>
         <Value>{email}</Value>
       </BoxProperties>
-      <BoxProperties bottom>
+      <BoxProperties $bottom>
         <Key>Phone:</Key>
         <Value>{phone}</Value>
       </BoxProperties>
@@ -132,11 +148,12 @@ export const Review = ({}) => {
 
       <CustomButton
         disabled={isLoading}
-        label="Confirm & Submit"
-        onClick={handleSubmit}
+        type="button"
+        label={status === "success" ? "Start Over" : "Confirm & Submit"}
+        onClick={() => handleSubmit()}
       />
 
-      {status === "error" && <ResponseBox error>{apiMessage}</ResponseBox>}
+      {status === "error" && <ResponseBox $error>{apiMessage}</ResponseBox>}
     </Container>
   );
 };

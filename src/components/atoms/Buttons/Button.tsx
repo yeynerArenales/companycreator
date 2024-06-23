@@ -7,6 +7,7 @@ interface CustomButtonProps {
   label: string;
   onClick?: () => void;
   disabled?: boolean;
+  type?: "submit" | "button" | "reset" | undefined;
 }
 
 const Button = styled.button<{ disabled?: boolean }>`
@@ -28,9 +29,10 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   label,
   onClick = () => {},
   disabled = false,
+  type = "submit",
 }) => {
   return (
-    <Button type="submit" onClick={onClick} disabled={disabled}>
+    <Button type={type} onClick={onClick} disabled={disabled}>
       {label}
     </Button>
   );

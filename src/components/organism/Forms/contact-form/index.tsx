@@ -71,7 +71,7 @@ export const ContactForm = ({}) => {
           />
         </InputBox>
 
-        <InputBox address={true}>
+        <InputBox $address={true}>
           <CustomTextField
             name='lastName'
             placeholder='Last name'
