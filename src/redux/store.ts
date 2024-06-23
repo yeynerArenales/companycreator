@@ -1,15 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
-import companyProccessReducer from "./features/companyProcessSlice";
-import { companyApi } from "./services/companyApi";
+import { configureStore, Store } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
+
+// Slice
+import companyProccessReducer from "./features/companyProcessSlice";
+
+// Api Service
+import { companyApi } from "./services/companyApi";
 
 // LocalStorage
 import { localStorageMiddleware } from "./local-storage/localStorageMiddleware";
-import { loadState } from "./local-storage/loadState";
 
-const statePreLoaded = loadState();
-
-export const store: any = configureStore({
+export const store: Store = configureStore({
   reducer: {
     companyProccessReducer,
     [companyApi.reducerPath]: companyApi.reducer,
