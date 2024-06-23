@@ -34,6 +34,7 @@ const Sidebar = () => {
                 ? "selected"
                 : "empty"
             }
+            disabled={status === "success"}
             onClick={() => {
               if (b == 1) {
                 dispatch(setStep(b));
