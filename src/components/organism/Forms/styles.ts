@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const Form = styled.form`
   width: 410px;
   margin: 25px 0;
+  
+  @media (max-width: 600px) {
+    width: 75%;
+  }
 `;
 
 export const DoubleInput = styled.div`

@@ -4,6 +4,9 @@ export const Container = styled.div`
   width: 30%;
   height: auto;
   display: flex;
+  @media (max-width: 600px) {
+    width: 20%;
+  }
 `;
 
 export const ButtonsBox = styled.div`
@@ -17,6 +20,10 @@ export const ButtonsBox = styled.div`
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 600px) {
+    margin: 20px 10px 0 20px;
+  }
 `;
 
 export const SubTitlesBox = styled.div`
@@ -28,6 +35,10 @@ export const SubTitlesBox = styled.div`
   flex-direction: column;
   align-items: center;
   margin-left: 30px;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 export const SubTitle = styled.h2`

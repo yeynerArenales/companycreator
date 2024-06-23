@@ -14,6 +14,10 @@ export const Title = styled.h1`
   line-height: 40px;
   padding: 20px 0 10px 80px;
   margin: 0;
+
+  @media (max-width: 600px) {
+    padding: 20px 0 10px 20px;
+  }
 `;
 
 export const Badge = styled.div<{ $status?: string }>`
