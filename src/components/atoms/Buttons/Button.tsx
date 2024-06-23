@@ -1,7 +1,7 @@
 "use client";
 
 // Components
-import { Button, ArrowRightIcon } from './styles'
+import { Button, ArrowRightIcon } from "./styles";
 
 interface CustomButtonProps {
   label: string;
@@ -9,7 +9,6 @@ interface CustomButtonProps {
   disabled?: boolean;
   type?: "submit" | "button" | "reset" | undefined;
 }
-
 
 export const CustomButton: React.FC<CustomButtonProps> = ({
   label,
@@ -20,7 +19,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   return (
     <Button type={type} onClick={onClick} disabled={disabled}>
       {label}
-      <ArrowRightIcon/>
+      <ArrowRightIcon />
     </Button>
   );
 };
