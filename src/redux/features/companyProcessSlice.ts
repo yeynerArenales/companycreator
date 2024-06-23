@@ -2,52 +2,56 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   step: 1,
-  status: 'empty',
+  status: "empty",
   businessForm: {
     fields: {
-      name: '',
-      type: '',
-      address: '',
-      optionalAddress: '',
-      city: '',
-      state: '',
-      zip: ''
+      name: "",
+      type: "",
+      address: "",
+      optionalAddress: "",
+      city: "",
+      state: "",
+      zip: "",
     },
-    error: false
+    error: false,
   },
   contactForm: {
     fields: {
-      name: '',
-      lastName: '',
-      email: '',
-      phone: ''
+      name: "",
+      lastName: "",
+      email: "",
+      phone: "",
     },
-    error: false
-  }
-}
+    error: false,
+  },
+};
 
 export const companyProcessSlice = createSlice({
-  name: 'companyFormProcess',
+  name: "companyFormProcess",
   initialState,
   reducers: {
     setStep: (state, action) => {
-      state.step = action.payload
+      state.step = action.payload;
     },
     setBussinesForm: (state, action) => {
       state.businessForm = {
         ...state.businessForm,
-        ...action.payload
-      }
+        ...action.payload,
+      };
     },
     setContactForm: (state, action) => {
       state.contactForm = {
         ...state.contactForm,
-        ...action.payload
-      }
+        ...action.payload,
+      };
     },
-  }
-})
+    setStatus: (state, action) => {
+      state.status = action.payload;
+    },
+  },
+});
 
-export const { setStep, setBussinesForm, setContactForm } = companyProcessSlice.actions
+export const { setStep, setBussinesForm, setContactForm, setStatus } =
+  companyProcessSlice.actions;
 
-export default companyProcessSlice.reducer
+export default companyProcessSlice.reducer;

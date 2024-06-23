@@ -16,7 +16,11 @@ import { businessFormSchema } from "./validation/schema";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { setBussinesForm, setStep } from "@/redux/features/companyProcessSlice";
+import {
+  setBussinesForm,
+  setStep,
+  setStatus,
+} from "@/redux/features/companyProcessSlice";
 import { useAppSelector } from "@/redux/hooks";
 
 // Utils
@@ -64,6 +68,7 @@ export const BusinessForm = ({}) => {
       })
     );
     dispatch(setStep(2));
+    dispatch(setStatus("progress"));
   };
 
   return (
