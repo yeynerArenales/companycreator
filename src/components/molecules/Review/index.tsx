@@ -1,11 +1,14 @@
-"use client";
-import React from "react";
-
 // Style
 import styled from "styled-components";
-import { CustomButton } from "../../atoms/Buttons";
+
+// Redux
+import { useAppSelector } from "@/redux/hooks";
 
 // Components
+import { CustomButton } from "../../atoms/Buttons";
+
+// Utils
+import { states } from "@/utils/constants";
 
 const Container = styled.div`
   width: 410px;
@@ -44,37 +47,63 @@ const Value = styled.p`
 `;
 
 export const Review = ({}) => {
+  const {
+    businessForm: {
+      fields: { name, type, address, optionalAddress, city, state, zip },
+    },
+    contactForm: {
+      fields: { name: firstName, lastName, email, phone },
+    },
+  } = useAppSelector((state) => state.companyProccessReducer);
+
+  const getAddressformated = (data: any) => {
+    const isAddressAbbrevation = data?.state?.find(
+      (s: any) => s.name === state
+    )?.abbreviation;
+    return `${data.address} ${optionalAddress ?? ""} ${city}, ${
+      isAddressAbbrevation ?? ""
+    } ${zip}`;
+  };
+
+  const addressformated = getAddressformated({
+    address,
+    optionalAddress,
+    city,
+    state,
+    zip,
+  });
+
   return (
     <Container>
       <SubTitle>Business structure</SubTitle>
       <BoxProperties>
         <Key>Name:</Key>
-        <Value>Sancrisoft, LLC</Value>
+        <Value>{name}</Value>
       </BoxProperties>
       <BoxProperties>
         <Key>Type:</Key>
-        <Value>Limited Liability Company</Value>
+        <Value>{type}</Value>
       </BoxProperties>
       <BoxProperties>
         <Key>Address:</Key>
-        <Value>123 Main Street Suite 123 Tampa, FL 33626</Value>
+        <Value>{addressformated}</Value>
       </BoxProperties>
 
       <SubTitle>Contact Person</SubTitle>
       <BoxProperties>
         <Key>Name:</Key>
-        <Value>John Doe</Value>
+        <Value>{firstName + " " + lastName}</Value>
       </BoxProperties>
       <BoxProperties>
         <Key>Email:</Key>
-        <Value>john@sancrisoft.com</Value>
+        <Value>{email}</Value>
       </BoxProperties>
       <BoxProperties>
         <Key>Phone:</Key>
-        <Value>+1 305-305-9988</Value>
+        <Value>{phone}</Value>
       </BoxProperties>
 
-      <CustomButton marginTop="25px" label="Confirm & Submit" />
+      <CustomButton label="Confirm & Submit" />
     </Container>
   );
 };
