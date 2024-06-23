@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 // Components
 import { CustomButton } from "../../atoms/Buttons";
@@ -27,6 +27,9 @@ import {
   setApiMessage,
 } from "@/redux/features/companyProcessSlice";
 
+// Hooks
+import { useCreateFieldsForApi } from "@/hooks/useCreateFieldsForApi";
+
 interface ApiResponse {
   status: string;
   message: string;
@@ -44,32 +47,15 @@ export const Review = ({}) => {
     },
   } = useAppSelector((state) => state.companyProccessReducer);
   const dispatch = useDispatch();
+  const { fields } = useCreateFieldsForApi();
 
-  const [postCompany, { isLoading, data, error }] = usePostCompanyMutation();
-
-  const createFieldsForApi = () => ({
-    name,
-    type,
-    address: {
-      line1: address,
-      line2: optionalAddress,
-      city,
-      state,
-      zip,
-    },
-    contact: {
-      firstName,
-      lastName,
-      email,
-    },
-  });
-
+  const [postCompany, { isLoading, error }] = usePostCompanyMutation();
   const handleSubmit = async () => {
     if (status === "success") {
       dispatch(setInitialState());
     } else {
       try {
-        handleApiResponse(await postCompany(createFieldsForApi()).unwrap());
+        handleApiResponse(await postCompany(fields).unwrap());
       } catch (err) {
         console.error(err);
       }
