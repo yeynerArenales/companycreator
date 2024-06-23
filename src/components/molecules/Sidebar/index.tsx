@@ -9,7 +9,9 @@ import { setStep } from "@/redux/features/companyProcessSlice";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
-  const { step } = useAppSelector((state) => state.companyProccessReducer);
+  const { step, status } = useAppSelector(
+    (state) => state.companyProccessReducer
+  );
 
   const buttons: number[] = [1, 2, 3];
   const subtitles: string[] = [
@@ -22,7 +24,13 @@ const Sidebar = () => {
       <ButtonsBox>
         {buttons.map((b) => (
           <SidebarButton
-            selected={b == step && true}
+            status={
+              step > b || status === "success"
+                ? "success"
+                : step === b
+                ? "selected"
+                : "empty"
+            }
             onClick={() => dispatch(setStep(b))}
             key={b}
             label={`${b}`}
