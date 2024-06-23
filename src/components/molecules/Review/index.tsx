@@ -24,6 +24,7 @@ import {
   setStatus,
   setInitialState,
   setStep,
+  setApiMessage,
 } from "@/redux/features/companyProcessSlice";
 
 interface ApiResponse {
@@ -34,6 +35,7 @@ interface ApiResponse {
 export const Review = ({}) => {
   const {
     status,
+    apiMessage,
     businessForm: {
       fields: { name, type, address, optionalAddress, city, state, zip },
     },
@@ -44,7 +46,6 @@ export const Review = ({}) => {
   const dispatch = useDispatch();
 
   const [postCompany, { isLoading, data, error }] = usePostCompanyMutation();
-  const [apiMessage, setApiMessage] = useState<string>("");
 
   const createFieldsForApi = () => ({
     name,
@@ -78,7 +79,7 @@ export const Review = ({}) => {
   useEffect(() => {
     if (error?.status === 500) {
       dispatch(setStatus("error"));
-      setApiMessage(error.message);
+      dispatch(setApiMessage(error.message));
     }
   }, [error]);
 
@@ -86,12 +87,12 @@ export const Review = ({}) => {
     switch (status) {
       case "ok":
         dispatch(setStatus("success"));
-        setApiMessage(message);
+        dispatch(setApiMessage(message));
         break;
 
       case "error":
         dispatch(setStatus("error"));
-        setApiMessage(message);
+        dispatch(setApiMessage(message));
         break;
 
       default:
