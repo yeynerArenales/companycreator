@@ -12,9 +12,9 @@ export const DoubleInput = styled.div`
   align-items: center;
 `;
 
-export const InputBox = styled.div`
+export const InputBox = styled.div<{ address?: boolean }>`
   width: 45%;
   &:last-child {
-    margin-top: 25px;
+    margin-top: ${(props) => (props.address ? "25px" : 0)};
   }
 `;
