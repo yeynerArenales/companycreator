@@ -1,6 +1,13 @@
 // Components
 import { CustomButton } from "../../atoms/Buttons";
-import { Container, SubTitle, BoxProperties, Key, Value, ResponseBox } from "./styles";
+import {
+  Container,
+  SubTitle,
+  BoxProperties,
+  Key,
+  Value,
+  ResponseBox,
+} from "./styles";
 
 // Utils
 import { states } from "@/utils/constants";
@@ -93,9 +100,15 @@ export const Review = ({}) => {
         <Value>{phone}</Value>
       </BoxProperties>
 
-      <ResponseBox error>Thanks for submitting your company! We’ll be in touch shortly.</ResponseBox>
+      <ResponseBox error>
+        Thanks for submitting your company! We’ll be in touch shortly.
+      </ResponseBox>
 
-      <CustomButton label="Confirm & Submit" onClick={handleSubmit} />
+      <CustomButton
+        disabled={isLoading}
+        label="Confirm & Submit"
+        onClick={handleSubmit}
+      />
     </Container>
   );
 };
