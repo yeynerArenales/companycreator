@@ -1,8 +1,6 @@
-// Style
-import styled from "styled-components";
-
 // Components
 import { CustomButton } from "../../atoms/Buttons";
+import { Container, SubTitle, BoxProperties, Key, Value } from "./styles";
 
 // Utils
 import { states } from "@/utils/constants";
@@ -10,42 +8,6 @@ import { states } from "@/utils/constants";
 // Redux
 import { useAppSelector } from "@/redux/hooks";
 import { usePostCompanyMutation } from "@/redux/services/companyApi";
-
-const Container = styled.div`
-  width: 410px;
-  margin: 25px 0;
-`;
-
-const SubTitle = styled.h2`
-  font-weight: 500;
-  margin-bottom: 8px;
-  font-size: 16px;
-  color: #404d61;
-  margin-top: 0;
-`;
-
-const BoxProperties = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-`;
-
-const Key = styled.h3`
-  font-size: 14px;
-  color: #757d8a;
-  font-weight: 500;
-  width: 137px;
-  margin: 10px 0;
-`;
-
-const Value = styled.p`
-  margin: 10px 0;
-  font-size: 14px;
-  color: #404d61;
-  font-weight: 500;
-  text-overflow: ellipsis;
-  max-width: 273px;
-`;
 
 export const Review = ({}) => {
   const {
@@ -62,7 +24,20 @@ export const Review = ({}) => {
   const handleSubmit = async () => {
     try {
       const data = {
-        name: "hola",
+        name,
+        type,
+        address: {
+          line1: address,
+          line2: optionalAddress,
+          city,
+          state,
+          zip,
+        },
+        contact: {
+          firstName,
+          lastName,
+          email,
+        },
       };
       const response = await postCompany(data).unwrap();
       console.log(response);
@@ -118,7 +93,7 @@ export const Review = ({}) => {
         <Value>{phone}</Value>
       </BoxProperties>
 
-      <CustomButton label="Confirm & Submit" />
+      <CustomButton label="Confirm & Submit" onClick={handleSubmit} />
     </Container>
   );
 };

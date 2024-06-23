@@ -1,15 +1,14 @@
-"use client";
-import React from "react";
+'use client'
 
 // Style
-import styled from "styled-components";
+import styled from 'styled-components'
 
 interface CustomButtonProps {
-  label: string;
-  marginTop?: string;
+  label: string
+  onClick?: () => void
 }
 
-const Button = styled.button<{ marginTop?: string }>`
+const Button = styled.button`
   cursor: pointer;
   width: 100%;
   height: 34px;
@@ -22,16 +21,15 @@ const Button = styled.button<{ marginTop?: string }>`
   border-radius: 8px;
   font-weight: 400;
   font-size: 14px;
-  margin-top: ${(props) => (props.marginTop ? props.marginTop : 0)};
-`;
+`
 
 export const CustomButton: React.FC<CustomButtonProps> = ({
   label,
-  marginTop = "",
+  onClick = () => {}
 }) => {
   return (
-    <Button marginTop={marginTop} type="submit">
+    <Button type='submit' onClick={onClick}>
       {label}
     </Button>
-  );
-};
+  )
+}

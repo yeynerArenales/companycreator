@@ -1,15 +1,13 @@
 'use client'
 import React, { useEffect } from 'react'
 
-// Style
-import styled from 'styled-components'
-
 // Form
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 // Components
 import { CustomTextField } from '@/components/atoms/Inputs'
 import { CustomButton } from '@/components/atoms/Buttons'
+import { Form, InputBox, DoubleInput } from '../styles'
 
 // validations
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -19,25 +17,6 @@ import { contactFormSchema } from './validate/schema'
 import { useDispatch } from 'react-redux'
 import { setContactForm, setStep } from '@/redux/features/companyProcessSlice'
 import { useAppSelector } from '@/redux/hooks'
-
-const Form = styled.form`
-  width: 410px;
-  margin: 25px 0;
-`
-
-const DoubleInput = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
-
-const InputBox = styled.div`
-  width: 45%;
-  &:last-child {
-    margin-top: 25px;
-  }
-`
 
 export const ContactForm = ({}) => {
   const {
@@ -56,6 +35,7 @@ export const ContactForm = ({}) => {
     resolver: yupResolver(contactFormSchema),
     defaultValues: {
       name,
+      lastName,
       email,
       phone
     }

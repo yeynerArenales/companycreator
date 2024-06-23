@@ -2,15 +2,13 @@
 
 import React, { useEffect } from "react";
 
-// Style
-import styled from "styled-components";
-
 // Form
 import { useForm, SubmitHandler } from "react-hook-form";
 
 // Components
 import { CustomSelect, CustomTextField } from "@/components/atoms/Inputs";
 import { CustomButton } from "@/components/atoms/Buttons";
+import { Form, InputBox, DoubleInput } from "../styles";
 
 // validations
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -23,22 +21,6 @@ import { useAppSelector } from "@/redux/hooks";
 
 // Utils
 import { businessTypes, states } from "@/utils/constants";
-
-const Form = styled.form`
-  width: 410px;
-  margin: 25px 0;
-`;
-
-const DoubleInput = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const InputBox = styled.div`
-  width: 45%;
-`;
 
 export const BusinessForm = ({}) => {
   const {
