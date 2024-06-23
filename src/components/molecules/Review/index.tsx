@@ -9,6 +9,8 @@ import {
   Key,
   Value,
   ResponseBox,
+  SubTitleBox,
+  Link,
 } from "./styles";
 
 // Utils
@@ -21,6 +23,7 @@ import { useDispatch } from "react-redux";
 import {
   setStatus,
   setInitialState,
+  setStep,
 } from "@/redux/features/companyProcessSlice";
 
 interface ApiResponse {
@@ -115,7 +118,10 @@ export const Review = ({}) => {
 
   return (
     <Container>
-      <SubTitle>Business structure</SubTitle>
+      <SubTitleBox>
+        <SubTitle>Business structure</SubTitle>
+        <Link onClick={() => dispatch(setStep(1))}>Edit</Link>
+      </SubTitleBox>
       <BoxProperties>
         <Key>Name:</Key>
         <Value>{name}</Value>
@@ -129,7 +135,10 @@ export const Review = ({}) => {
         <Value>{addressformated}</Value>
       </BoxProperties>
 
-      <SubTitle>Contact Person</SubTitle>
+      <SubTitleBox>
+        <SubTitle>Contact Person</SubTitle>
+        <Link onClick={() => dispatch(setStep(2))}>Edit</Link>
+      </SubTitleBox>
       <BoxProperties>
         <Key>Name:</Key>
         <Value>{firstName + " " + lastName}</Value>

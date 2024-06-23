@@ -3,18 +3,34 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 410px;
   margin: 25px 0;
-  
+
   @media (max-width: 600px) {
     width: 80%;
   }
 `;
 
+export const SubTitleBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const SubTitle = styled.h2`
+  width: 40%;
   font-weight: 500;
   margin-bottom: 8px;
   font-size: 16px;
   color: #404d61;
-  margin-top: 0;
+  margin: 0;
+`;
+
+export const Link = styled.p`
+  color: #4a3aff;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  background-color: transparent;
+  box-shadow: 0px 4px 4px 0px #00000040;
 `;
 
 export const BoxProperties = styled.div<{ $bottom?: boolean }>`
