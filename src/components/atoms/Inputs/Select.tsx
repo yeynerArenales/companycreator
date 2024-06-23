@@ -1,42 +1,43 @@
-"use client";
-import React from "react";
+'use client'
+import React from 'react'
 
 // Style
-import styled from "styled-components";
+import styled from 'styled-components'
 
 // Form
-import { Controller } from "react-hook-form";
+import { Controller } from 'react-hook-form'
 
 // Errors
-import { InputErrors } from "./InputErrors";
+import { InputErrors } from './InputErrors'
 
 interface CustomSelectProps {
-  label?: string;
-  options: string[];
-  control: any;
-  name: string;
-  errors: any;
+  label?: string
+  options: string[]
+  control: any
+  name: string
+  placeholder: string
+  errors: any
 }
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
   width: 100%;
-`;
+`
 
 const Label = styled.label`
   font-weight: 500;
   margin-bottom: 8px;
   font-size: 16px;
   color: #404d61;
-`;
+`
 
 const Select = styled.select`
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 8px;
   appearance: none;
-  background-image: url("/arrow-down.svg");
+  background-image: url('/arrow-down.svg');
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 16px;
@@ -49,16 +50,16 @@ const Select = styled.select`
   & svg path {
     fill: #757d8a;
   }
-  &[selected] {
+  & option {
     color: #757d8a;
   }
-`;
+`
 
 const Option = styled.option`
   color: #757d8a;
   font-size: 14px;
   font-weight: 400;
-`;
+`
 
 export const CustomSelect: React.FC<CustomSelectProps> = ({
   label = null,
@@ -66,6 +67,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
   control,
   name,
   errors,
+  placeholder
 }) => {
   return (
     <Wrapper>
@@ -75,6 +77,9 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
         name={name}
         render={({ field }) => (
           <Select {...field}>
+            <Option value='' disabled>
+              {placeholder}
+            </Option>
             {options.map((option) => (
               <Option key={option} value={option}>
                 {option}
@@ -85,5 +90,5 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
       />
       {errors[name] && <InputErrors message={errors[name].message} />}
     </Wrapper>
-  );
-};
+  )
+}
