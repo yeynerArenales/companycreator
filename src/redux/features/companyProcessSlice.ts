@@ -13,7 +13,7 @@ const initialState = {
       state: "",
       zip: "",
     },
-    error: false,
+    error: true,
   },
   contactForm: {
     fields: {
@@ -22,7 +22,7 @@ const initialState = {
       email: "",
       phone: "",
     },
-    error: false,
+    error: true,
   },
 };
 

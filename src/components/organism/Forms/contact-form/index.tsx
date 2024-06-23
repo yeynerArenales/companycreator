@@ -1,71 +1,72 @@
-'use client'
-import React, { useEffect } from 'react'
+"use client";
+import React, { useEffect } from "react";
 
 // Form
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { useForm, SubmitHandler } from "react-hook-form";
 
 // Components
-import { CustomTextField } from '@/components/atoms/Inputs'
-import { CustomButton } from '@/components/atoms/Buttons'
-import { Form, InputBox, DoubleInput } from '../styles'
+import { CustomTextField } from "@/components/atoms/Inputs";
+import { CustomButton } from "@/components/atoms/Buttons";
+import { Form, InputBox, DoubleInput } from "../styles";
 
 // validations
-import { yupResolver } from '@hookform/resolvers/yup'
-import { contactFormSchema } from './validate/schema'
+import { yupResolver } from "@hookform/resolvers/yup";
+import { contactFormSchema } from "./validate/schema";
 
 // Redux
-import { useDispatch } from 'react-redux'
-import { setContactForm, setStep } from '@/redux/features/companyProcessSlice'
-import { useAppSelector } from '@/redux/hooks'
+import { useDispatch } from "react-redux";
+import { setContactForm, setStep } from "@/redux/features/companyProcessSlice";
+import { useAppSelector } from "@/redux/hooks";
 
 export const ContactForm = ({}) => {
   const {
     contactForm: {
-      fields: { name, lastName, email, phone }
-    }
-  } = useAppSelector((state ) => state.companyProccessReducer)
-  const dispatch = useDispatch()
+      fields: { name, lastName, email, phone },
+    },
+  } = useAppSelector((state) => state.companyProccessReducer);
+  const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
-    criteriaMode: 'all',
+    criteriaMode: "all",
     resolver: yupResolver(contactFormSchema),
     defaultValues: {
       name,
       lastName,
       email,
-      phone
-    }
-  })
+      phone,
+    },
+  });
 
   useEffect(() => {
     dispatch(
       setContactForm({
-        error: true
+        error: true,
       })
-    )
-  }, [errors])
+    );
+  }, [errors]);
 
   const onSubmit: SubmitHandler<any> = (fields) => {
     dispatch(
       setContactForm({
-        fields
+        fields,
+        error: false,
       })
-    )
-    dispatch(setStep(3))
-  }
+    );
+    dispatch(setStep(3));
+  };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <DoubleInput>
         <InputBox>
           <CustomTextField
-            label='Name'
-            name='name'
-            placeholder='First name'
+            label="Name"
+            name="name"
+            placeholder="First name"
             register={register}
             errors={errors}
           />
@@ -73,8 +74,8 @@ export const ContactForm = ({}) => {
 
         <InputBox $address={true}>
           <CustomTextField
-            name='lastName'
-            placeholder='Last name'
+            name="lastName"
+            placeholder="Last name"
             register={register}
             errors={errors}
           />
@@ -82,22 +83,22 @@ export const ContactForm = ({}) => {
       </DoubleInput>
 
       <CustomTextField
-        label='Email'
-        placeholder='Email'
+        label="Email"
+        placeholder="Email"
         register={register}
-        name='email'
+        name="email"
         errors={errors}
       />
 
       <CustomTextField
-        label='Phone'
-        placeholder='(555) 000-0000'
+        label="Phone"
+        placeholder="(555) 000-0000"
         register={register}
-        name='phone'
+        name="phone"
         errors={errors}
       />
 
-      <CustomButton label='Continue' />
+      <CustomButton label="Continue" />
     </Form>
-  )
-}
+  );
+};

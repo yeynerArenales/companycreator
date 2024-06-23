@@ -65,6 +65,7 @@ export const BusinessForm = ({}) => {
     dispatch(
       setBussinesForm({
         fields,
+        error: false,
       })
     );
     dispatch(setStep(2));
