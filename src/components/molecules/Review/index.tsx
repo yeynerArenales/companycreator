@@ -62,7 +62,7 @@ export const Review = ({}) => {
 
   const handleSubmit = async () => {
     if (status === "success") {
-      setInitialState();
+      dispatch(setInitialState());
     } else {
       try {
         handleApiResponse(await postCompany(createFieldsForApi()).unwrap());
@@ -73,11 +73,10 @@ export const Review = ({}) => {
   };
 
   useEffect(() => {
-    if (error?.status === "500") {
+    if (error?.status === 500) {
       dispatch(setStatus("error"));
       setApiMessage(error.message);
     }
-    console.log(error);
   }, [error]);
 
   const handleApiResponse = ({ status, message }: ApiResponse) => {
