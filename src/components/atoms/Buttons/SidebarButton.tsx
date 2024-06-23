@@ -1,7 +1,7 @@
 "use client";
 
 // Components
-import { CustomSidebarButton, Icon } from "./styles";
+import { CustomSidebarButton, DoneIcon } from "./styles";
 
 interface SidebarButtonProps {
   label: string;
@@ -16,7 +16,7 @@ export const SidebarButton: React.FC<SidebarButtonProps> = ({
 }) => {
   return (
     <CustomSidebarButton $status={status} onClick={onClick}>
-      {status === "success" ? <Icon /> : label}
+      {status === "success" ? <DoneIcon /> : label}
     </CustomSidebarButton>
   );
 };

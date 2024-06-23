@@ -1,7 +1,7 @@
 "use client";
 
 // Components
-import { Button } from './styles'
+import { Button, ArrowRightIcon } from './styles'
 
 interface CustomButtonProps {
   label: string;
@@ -20,6 +20,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   return (
     <Button type={type} onClick={onClick} disabled={disabled}>
       {label}
+      <ArrowRightIcon/>
     </Button>
   );
 };

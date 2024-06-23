@@ -1,5 +1,8 @@
 import styled from "styled-components";
+
+// Icons
 import { MdDone } from "react-icons/md";
+import { FaArrowRight } from "react-icons/fa6";
 
 export const CustomSidebarButton = styled.button<{ $status: string }>`
   cursor: pointer;
@@ -40,6 +43,12 @@ export const Button = styled.button<{ disabled?: boolean }>`
   font-size: 14px;
 `;
 
-export const Icon = styled(MdDone)`
+export const DoneIcon = styled(MdDone)`
   color: white;
+`;
+
+
+export const ArrowRightIcon = styled(FaArrowRight)`
+  color: white;
+  margin-left: 15px;
 `;
