@@ -99,22 +99,9 @@ export const Review = ({}) => {
     }
   };
 
-  const getAddressformated = (data: any) => {
-    const isAddressAbbrevation = states.find(
-      (s: any) => s.name === data.state
-    )?.abbreviation;
-    return `${data.address} ${data.optionalAddress ?? ""} ${data.city}, ${
-      isAddressAbbrevation ?? ""
-    } ${data.zip}`;
+  const isAddressAbbrevation = () => {
+    return states.find((s) => s.name === state)?.abbreviation;
   };
-
-  const addressformated = getAddressformated({
-    address,
-    optionalAddress,
-    city,
-    state,
-    zip,
-  });
 
   return (
     <Container>
@@ -132,7 +119,11 @@ export const Review = ({}) => {
       </BoxProperties>
       <BoxProperties $bottom>
         <Key>Address:</Key>
-        <Value>{addressformated}</Value>
+        <Value>
+          {`${address} ${optionalAddress ?? ""}`}
+          <br />
+          {`${city}, ${isAddressAbbrevation() ?? ""} ${zip}`}
+        </Value>
       </BoxProperties>
 
       <SubTitleBox>

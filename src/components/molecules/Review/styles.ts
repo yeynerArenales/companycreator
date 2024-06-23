@@ -21,6 +21,10 @@ export const SubTitle = styled.h2`
   font-size: 16px;
   color: #404d61;
   margin: 0;
+
+  @media (max-width: 500px) {
+    width: 60%;
+  }
 `;
 
 export const Link = styled.p`
@@ -46,6 +50,10 @@ export const Key = styled.h3`
   font-weight: 500;
   width: 137px;
   margin: 10px 0;
+  
+  @media (max-width: 500px) {
+    width: 40%;
+  }
 `;
 
 export const Value = styled.p`
@@ -54,7 +62,12 @@ export const Value = styled.p`
   color: #404d61;
   font-weight: 500;
   text-overflow: ellipsis;
+  word-break: break-all;
   max-width: 273px;
+  
+  @media (max-width: 500px) {
+    width: 60%;
+  }
 `;
 
 export const ResponseBox = styled.div<{ $error?: boolean }>`
