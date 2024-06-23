@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect } from "react";
 
 // Style
@@ -8,15 +9,19 @@ import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 // Components
+import { CustomSelect, CustomTextField } from "@/components/atoms/Inputs";
+import { CustomButton } from "@/components/atoms/Buttons";
 
 // validations
 import { yupResolver } from "@hookform/resolvers/yup";
 import { businessFormSchema } from "./validation/schema";
-import { CustomSelect, CustomTextField } from "@/components/atoms/Inputs";
-import { CustomButton } from "@/components/atoms/Buttons";
+
+// Redux
 import { useDispatch } from "react-redux";
 import { setBussinesForm, setStep } from "@/redux/features/companyProcessSlice";
 import { useAppSelector } from "@/redux/hooks";
+
+// Utils
 import { businessTypes, states } from "@/utils/constants";
 
 const Form = styled.form`

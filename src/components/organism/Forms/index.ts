@@ -1,2 +1,2 @@
 export { BusinessForm } from "./business-form";
-export { ContactForm } from "./ContactForm";
+export { ContactForm } from "./contact-form";
