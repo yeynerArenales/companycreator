@@ -1,7 +1,7 @@
 "use client";
 
-// Style
-import styled from "styled-components";
+// Components
+import { Button } from './styles'
 
 interface CustomButtonProps {
   label: string;
@@ -10,20 +10,6 @@ interface CustomButtonProps {
   type?: "submit" | "button" | "reset" | undefined;
 }
 
-const Button = styled.button<{ disabled?: boolean }>`
-  cursor: ${(props) => (!props.disabled ? "pointer" : "auto")};
-  width: 100%;
-  height: 34px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  background: ${(props) => (!props.disabled ? "#4a3aff" : "gray")};
-  color: white;
-  border-radius: 8px;
-  font-weight: 400;
-  font-size: 14px;
-`;
 
 export const CustomButton: React.FC<CustomButtonProps> = ({
   label,
