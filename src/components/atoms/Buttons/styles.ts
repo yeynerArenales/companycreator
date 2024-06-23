@@ -49,5 +49,5 @@ export const DoneIcon = styled(MdDone)`
 
 export const ArrowRightIcon = styled(FaArrowRight)`
   color: white;
-  margin-left: 15px;
+  margin-left: 5px;
 `;
