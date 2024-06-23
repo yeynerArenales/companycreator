@@ -1,14 +1,15 @@
 // Style
 import styled from "styled-components";
 
-// Redux
-import { useAppSelector } from "@/redux/hooks";
-
 // Components
 import { CustomButton } from "../../atoms/Buttons";
 
 // Utils
 import { states } from "@/utils/constants";
+
+// Redux
+import { useAppSelector } from "@/redux/hooks";
+import { usePostCompanyMutation } from "@/redux/services/companyApi";
 
 const Container = styled.div`
   width: 410px;
@@ -56,13 +57,27 @@ export const Review = ({}) => {
     },
   } = useAppSelector((state) => state.companyProccessReducer);
 
+  const [postCompany, { isLoading, data, error }] = usePostCompanyMutation();
+
+  const handleSubmit = async () => {
+    try {
+      const data = {
+        name: "hola",
+      };
+      const response = await postCompany(data).unwrap();
+      console.log(response);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const getAddressformated = (data: any) => {
-    const isAddressAbbrevation = data?.state?.find(
-      (s: any) => s.name === state
+    const isAddressAbbrevation = states.find(
+      (s: any) => s.name === data.state
     )?.abbreviation;
-    return `${data.address} ${optionalAddress ?? ""} ${city}, ${
+    return `${data.address} ${data.optionalAddress ?? ""} ${data.city}, ${
       isAddressAbbrevation ?? ""
-    } ${zip}`;
+    } ${data.zip}`;
   };
 
   const addressformated = getAddressformated({
