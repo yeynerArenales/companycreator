@@ -1,6 +1,6 @@
 // Components
 import { CustomButton } from "../../atoms/Buttons";
-import { Container, SubTitle, BoxProperties, Key, Value } from "./styles";
+import { Container, SubTitle, BoxProperties, Key, Value, ResponseBox } from "./styles";
 
 // Utils
 import { states } from "@/utils/constants";
@@ -74,7 +74,7 @@ export const Review = ({}) => {
         <Key>Type:</Key>
         <Value>{type}</Value>
       </BoxProperties>
-      <BoxProperties>
+      <BoxProperties bottom>
         <Key>Address:</Key>
         <Value>{addressformated}</Value>
       </BoxProperties>
@@ -88,10 +88,12 @@ export const Review = ({}) => {
         <Key>Email:</Key>
         <Value>{email}</Value>
       </BoxProperties>
-      <BoxProperties>
+      <BoxProperties bottom>
         <Key>Phone:</Key>
         <Value>{phone}</Value>
       </BoxProperties>
+
+      <ResponseBox error>Thanks for submitting your company! We’ll be in touch shortly.</ResponseBox>
 
       <CustomButton label="Confirm & Submit" onClick={handleSubmit} />
     </Container>
