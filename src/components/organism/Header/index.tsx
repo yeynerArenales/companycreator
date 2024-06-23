@@ -12,18 +12,19 @@ const Header = () => {
   const defaultBadge = () => {
     switch (status) {
       case "progress":
-        return <Badge status="progress">In Progress</Badge>;
+        return <Badge status="progress">In progress</Badge>;
 
       case "success":
-        return <Badge status="progress">In Progress</Badge>;
+        return <Badge status="success">success</Badge>;
 
       case "error":
-        return <Badge status="progress">In Progress</Badge>;
+        return <Badge status="error">error</Badge>;
 
       default:
         return <></>;
     }
   };
+
   return (
     <Container>
       <Title>New Company</Title>

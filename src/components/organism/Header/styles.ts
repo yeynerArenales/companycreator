@@ -29,7 +29,7 @@ export const Badge = styled.div<{ status?: string }>`
         return "#FFA500";
       case "success":
         return "#008000";
-      default:
+      case "error":
         return "#FF0000";
     }
   }};
