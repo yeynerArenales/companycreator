@@ -5,8 +5,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 // Components
-import { BusinessForm } from "../../utils/Forms";
-import { SidebarButton } from "../Buttons";
+import { BusinessForm } from "@/components/organism/Forms";
+import { SidebarButton } from "@/components/atoms/Buttons";
 import { Review } from "../Review";
 
 const Container = styled.div`

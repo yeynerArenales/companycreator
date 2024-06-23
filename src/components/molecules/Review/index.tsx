@@ -3,7 +3,7 @@ import React from "react";
 
 // Style
 import styled from "styled-components";
-import { CustomButton } from "../Buttons";
+import { CustomButton } from "../../atoms/Buttons";
 
 // Components
 
