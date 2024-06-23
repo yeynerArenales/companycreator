@@ -48,9 +48,7 @@ export const companyProcessSlice = createSlice({
     setStatus: (state, action) => {
       state.status = action.payload;
     },
-    setInitialState: (state) => {
-      state = initialState;
-    },
+    setInitialState: () => initialState,
   },
 });
 
