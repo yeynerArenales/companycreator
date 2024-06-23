@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // Components
 import { CustomButton } from "../../atoms/Buttons";
 import {
@@ -15,9 +17,17 @@ import { states } from "@/utils/constants";
 // Redux
 import { useAppSelector } from "@/redux/hooks";
 import { usePostCompanyMutation } from "@/redux/services/companyApi";
+import { useDispatch } from "react-redux";
+import { setStatus } from "@/redux/features/companyProcessSlice";
+
+interface ApiResponse {
+  status: string;
+  message: string;
+}
 
 export const Review = ({}) => {
   const {
+    status,
     businessForm: {
       fields: { name, type, address, optionalAddress, city, state, zip },
     },
@@ -25,12 +35,14 @@ export const Review = ({}) => {
       fields: { name: firstName, lastName, email, phone },
     },
   } = useAppSelector((state) => state.companyProccessReducer);
+  const dispatch = useDispatch();
 
   const [postCompany, { isLoading, data, error }] = usePostCompanyMutation();
+  const [apiMessage, setApiMessage] = useState<string>("");
 
   const handleSubmit = async () => {
     try {
-      const data = {
+      const fields = {
         name,
         type,
         address: {
@@ -46,10 +58,26 @@ export const Review = ({}) => {
           email,
         },
       };
-      const response = await postCompany(data).unwrap();
-      console.log(response);
+      handleApiResponse(await postCompany(fields).unwrap());
     } catch (err) {
       console.error(err);
+    }
+  };
+
+  const handleApiResponse = ({ status, message }: ApiResponse) => {
+    switch (status) {
+      case "ok":
+        dispatch(setStatus("success"));
+        setApiMessage(message);
+        break;
+
+      case "error":
+        dispatch(setStatus("error"));
+        setApiMessage(message);
+        break;
+
+      default:
+        break;
     }
   };
 
@@ -100,15 +128,15 @@ export const Review = ({}) => {
         <Value>{phone}</Value>
       </BoxProperties>
 
-      <ResponseBox error>
-        Thanks for submitting your company! We’ll be in touch shortly.
-      </ResponseBox>
+      {status === "success" && <ResponseBox>{apiMessage}</ResponseBox>}
 
       <CustomButton
         disabled={isLoading}
         label="Confirm & Submit"
         onClick={handleSubmit}
       />
+
+      {status === "error" && <ResponseBox error>{apiMessage}</ResponseBox>}
     </Container>
   );
 };
