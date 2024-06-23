@@ -12,7 +12,13 @@ export const businessTypes: string[] = [
   "Professional Limited Liability Company (PLLC)",
 ];
 
-export const phonesTypes = [
+interface IPhoneCodes {
+  name: string;
+  phone_code: string;
+  flag_url: string;
+}
+
+export const phonesTypes: IPhoneCodes[] = [
   {
     name: "United States",
     phone_code: "+1",

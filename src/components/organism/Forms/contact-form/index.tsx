@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 // Components
-import { CustomTextField } from "@/components/atoms/Inputs";
+import { CustomPhoneInput, CustomTextField } from "@/components/atoms/Inputs";
 import { CustomButton } from "@/components/atoms/Buttons";
 import { Form, InputBox, DoubleInput } from "../styles";
 
@@ -28,6 +28,7 @@ export const ContactForm = ({}) => {
 
   const {
     register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -90,10 +91,10 @@ export const ContactForm = ({}) => {
         errors={errors}
       />
 
-      <CustomTextField
+      <CustomPhoneInput
         label="Phone"
         placeholder="(555) 000-0000"
-        register={register}
+        control={control}
         name="phone"
         errors={errors}
       />
