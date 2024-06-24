@@ -14,7 +14,7 @@ Company Creator is a project that allows you to register your company easily thr
 ## Steps to Run the Project
 
 1. **Clone the Repository:**
-   Clone or download the repository from [REPOSITORY_URL].
+   Clone or download the repository from https://github.com/yeynerArenales/companycreator.git.
 
 2. **Environment Configuration:**
 
@@ -38,9 +38,9 @@ Company Creator is a project that allows you to register your company easily thr
 
 ## Developer Mode
 
-    If you prefer to run the project in developer mode to make changes or test, you can use the following command:
+If you prefer to run the project in developer mode to make changes or test, you can use the following command:
 
-    npm run dev
+npm run dev
 
 This command starts the server in development mode, providing a more flexible experience and facilitating code debugging.
 
