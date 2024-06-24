@@ -11,6 +11,13 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import styled from "styled-components";
 
+// i18n-iso-countries
+import i18nIsoCountries from "i18n-iso-countries";
+i18nIsoCountries.registerLocale(require("i18n-iso-countries/langs/en.json"));
+
+// Constants
+import { phonesTypes } from "@/utils/constants";
+
 // Components
 
 interface ICustomPhoneInput {
@@ -26,11 +33,11 @@ const PhoneInputStyled = styled(PhoneInput)`
   height: 33px;
   margin-bottom: 15px;
 
-  .special-label{
+  .special-label {
     display: none !important;
   }
 
-  .form-control{
+  .form-control {
     width: 100%;
     height: 33px;
   }
@@ -48,6 +55,15 @@ export const CustomPhoneInput: FC<ICustomPhoneInput> = ({
   name,
   errors,
 }): JSX.Element => {
+  const getIso2FromCountryName = (countryName: string) => {
+    const countryCode = i18nIsoCountries.getAlpha2Code(countryName, "en");
+    return countryCode ? countryCode.toLowerCase() : "";
+  };
+
+  const allowedCountryCodes: string[] = phonesTypes?.map(({ name }) =>
+    getIso2FromCountryName(name)
+  );
+
   return (
     <Wrapper>
       {label && <Label>{label}</Label>}
@@ -61,7 +77,8 @@ export const CustomPhoneInput: FC<ICustomPhoneInput> = ({
             inputProps={{
               ref,
             }}
-            country={'us'}
+            onlyCountries={allowedCountryCodes}
+            country={"us"}
             countryCodeEditable={false}
             placeholder={placeholder}
             isValid={!Boolean(errors[name])}
