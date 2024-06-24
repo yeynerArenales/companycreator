@@ -1,8 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// localStorage
-import { loadState } from "../local-storage/loadState";
-
 const initialState = {
   step: 1,
   status: "empty",
@@ -30,12 +27,9 @@ const initialState = {
   },
 };
 
-const preloadSate = loadState() ? loadState() : initialState;
-console.log({ preloadSate });
-
 export const companyProcessSlice = createSlice({
   name: "companyFormProcess",
-  initialState: preloadSate,
+  initialState,
   reducers: {
     setStep: (state, action) => {
       state.step = action.payload;
