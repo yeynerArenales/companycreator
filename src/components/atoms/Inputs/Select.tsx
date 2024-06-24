@@ -5,7 +5,7 @@ import React from 'react'
 import { Wrapper, Select, Option, Label } from "./styles";
 
 // Form
-import { Controller } from 'react-hook-form'
+import { Controller,Control, DeepMap, FieldError } from 'react-hook-form'
 
 // Errors
 import { InputErrors } from './InputErrors'
@@ -13,10 +13,10 @@ import { InputErrors } from './InputErrors'
 interface CustomSelectProps {
   label?: string
   options: string[]
-  control: any
+  control: Control
   name: string
   placeholder: string
-  errors: any
+  errors: DeepMap<any,FieldError>
 }
 
 export const CustomSelect: React.FC<CustomSelectProps> = ({

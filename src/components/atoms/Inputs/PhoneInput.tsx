@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 // Form
-import { Controller } from "react-hook-form";
+import { Controller,Control, DeepMap, FieldError } from 'react-hook-form'
 
 // Components
 import { Wrapper, Label, PhoneInputStyled } from "./styles";
@@ -22,9 +22,9 @@ import { InputErrors } from './InputErrors'
 interface ICustomPhoneInput {
   label?: string;
   placeholder?: string;
-  control: any;
+  control: Control
   name: string;
-  errors: any;
+  errors: DeepMap<any,FieldError>
 }
 
 export const CustomPhoneInput: FC<ICustomPhoneInput> = ({

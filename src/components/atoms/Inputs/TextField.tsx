@@ -7,12 +7,15 @@ import { Wrapper, InputStyled, Label } from "./styles";
 // Errors
 import { InputErrors } from "./InputErrors";
 
+// Form
+import { DeepMap, FieldError } from "react-hook-form";
+
 interface CustomTextFieldProps {
   label?: string;
   placeholder: string;
   name: string;
   register: any;
-  errors: any;
+  errors: DeepMap<any, FieldError>;
   type?: string;
 }
 
