@@ -3,6 +3,9 @@ import styled from "styled-components";
 // Icons
 import { IoIosWarning } from "react-icons/io";
 
+// Phone Input
+import PhoneInput from "react-phone-input-2";
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -69,4 +72,24 @@ export const WarningIcon = styled(IoIosWarning)`
   height: 16px;
   color: #f43c3c;
   margin-right: 5px;
+`;
+
+export const PhoneInputStyled = styled(PhoneInput)`
+width: 100%;
+height: 33px;
+margin-bottom: 15px;
+
+.special-label {
+  display: none !important;
+}
+
+.form-control {
+  width: 100%;
+  height: 33px;
+}
+
+& input {
+  width: 100%;
+  height: 33px;
+}
 `;

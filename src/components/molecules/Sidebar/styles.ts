@@ -27,7 +27,6 @@ export const ButtonsBox = styled.div`
 `;
 
 export const SubTitlesBox = styled.div`
-  width: 200px;
   height: 155px;
   margin: 25px 0 00px 80px;
   display: flex;
@@ -36,8 +35,12 @@ export const SubTitlesBox = styled.div`
   align-items: center;
   margin-left: 30px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     display: none;
+  }
+
+  @media (min-width: 700px) {
+    width: 40%;
   }
 `;
 
