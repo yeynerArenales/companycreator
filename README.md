@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Company Creator
 
-## Getting Started
+Company Creator is a project that allows you to register your company easily through two forms. One for your company's data and another for contact information. The project is developed following best practices and includes validations to ensure optimal functionality.
 
-First, run the development server:
+## Technologies Used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js 14.2.4:** React framework for web applications.
+- **Atomic Design:** Methodology for designing components in a structured and reusable way.
+- **React Hook Form and Yup:** For form management and validations respectively.
+- **Redux Toolkit and Redux Persist:** For global state management and data persistence.
+- **Styled-Components:** Library for styling React components with CSS.
+- **Phone Number Input:** Implementation of a specific input field for phone numbers.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Steps to Run the Project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the Repository:**
+   Clone or download the repository from [REPOSITORY_URL].
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. **Environment Configuration:**
 
-## Learn More
+   - Create a `.env` file in the project root based on the provided `.env.example` file.
+   - Make sure to configure and provide necessary values in the `.env` file.
 
-To learn more about Next.js, take a look at the following resources:
+3. **Install Dependencies:**
+   Open a terminal in the project root and execute the following command to install all necessary dependencies:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. **Build the Project:**
+   After installing dependencies, build the project by running:
 
-## Deploy on Vercel
+   npm run build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Start the Server:**
+   Once built, start the server with the following command:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   npm run start
+
+## Developer Mode
+
+    If you prefer to run the project in developer mode to make changes or test, you can use the following command:
+
+    npm run dev
+
+This command starts the server in development mode, providing a more flexible experience and facilitating code debugging.
+
+Enjoy using Company Creator to efficiently and securely register your company!
