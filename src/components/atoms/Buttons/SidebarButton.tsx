@@ -7,15 +7,17 @@ interface SidebarButtonProps {
   label: string;
   status: string;
   onClick: () => void;
+  disabled?: boolean;
 }
 
 export const SidebarButton: React.FC<SidebarButtonProps> = ({
   label,
   status,
   onClick,
+  disabled = false,
 }) => {
   return (
-    <CustomSidebarButton $status={status} onClick={onClick}>
+    <CustomSidebarButton disabled={disabled} $successDisabled={disabled} $status={status} onClick={onClick}>
       {status === "success" ? <DoneIcon /> : label}
     </CustomSidebarButton>
   );

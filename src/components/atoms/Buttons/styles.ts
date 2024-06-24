@@ -4,8 +4,11 @@ import styled from "styled-components";
 import { MdDone } from "react-icons/md";
 import { FaArrowRight } from "react-icons/fa6";
 
-export const CustomSidebarButton = styled.button<{ $status: string }>`
-  cursor: pointer;
+export const CustomSidebarButton = styled.button<{
+  $status: string;
+  $successDisabled: boolean;
+}>`
+  cursor: ${(props) => (!props.disabled ? "pointer" : "auto")};
   width: 26px;
   height: 26px;
   display: flex;

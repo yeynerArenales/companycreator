@@ -3,11 +3,11 @@
 // Components
 import { Badge, Container, Title } from "./styles";
 
-// Redux
-import { useAppSelector } from "@/redux/hooks";
+// Hooks
+import { useGetState } from "@/hooks";
 
 const Header = () => {
-  const { status } = useAppSelector((state) => state.companyProccessReducer);
+  const { status } = useGetState();
 
   const defaultBadge = () => {
     switch (status) {

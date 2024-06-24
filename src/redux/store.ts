@@ -1,18 +1,28 @@
-import { configureStore } from "@reduxjs/toolkit";
-import companyProccessReducer from './features/companyProcessSlice'
-import { companyApi } from "./services/companyApi";
+import { configureStore, Store } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
-export const store = configureStore({
+// Slice
+import companyProccessReducer from "./features/companyProcessSlice";
+
+// Api Service
+import { companyApi } from "./services/companyApi";
+
+// LocalStorage
+import { localStorageMiddleware } from "./local-storage/localStorageMiddleware";
+
+export const store: Store = configureStore({
   reducer: {
     companyProccessReducer,
     [companyApi.reducerPath]: companyApi.reducer,
   },
-  middleware: (getDefaultMiddleware)=>
-    getDefaultMiddleware().concat(companyApi.middleware)
-})
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      localStorageMiddleware,
+      companyApi.middleware
+    ),
+});
 
-setupListeners(store.dispatch)
+setupListeners(store.dispatch);
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

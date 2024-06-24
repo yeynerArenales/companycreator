@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 // Components
 import { CustomButton } from "../../atoms/Buttons";
@@ -17,14 +17,17 @@ import {
 import { states } from "@/utils/constants";
 
 // Redux
-import { useAppSelector } from "@/redux/hooks";
 import { usePostCompanyMutation } from "@/redux/services/companyApi";
 import { useDispatch } from "react-redux";
 import {
   setStatus,
   setInitialState,
   setStep,
+  setApiMessage,
 } from "@/redux/features/companyProcessSlice";
+
+// Hooks
+import { useCreateFieldsForApi, useGetState } from "@/hooks";
 
 interface ApiResponse {
   status: string;
@@ -34,41 +37,20 @@ interface ApiResponse {
 export const Review = ({}) => {
   const {
     status,
-    businessForm: {
-      fields: { name, type, address, optionalAddress, city, state, zip },
-    },
-    contactForm: {
-      fields: { name: firstName, lastName, email, phone },
-    },
-  } = useAppSelector((state) => state.companyProccessReducer);
+    apiMessage,
+    businessForm: { name, type, address, optionalAddress, city, state, zip },
+    contactForm: { firstName, lastName, email, phone },
+  } = useGetState();
   const dispatch = useDispatch();
-
-  const [postCompany, { isLoading, data, error }] = usePostCompanyMutation();
-  const [apiMessage, setApiMessage] = useState<string>("");
-
-  const createFieldsForApi = () => ({
-    name,
-    type,
-    address: {
-      line1: address,
-      line2: optionalAddress,
-      city,
-      state,
-      zip,
-    },
-    contact: {
-      firstName,
-      lastName,
-      email,
-    },
-  });
+  const { fields } = useCreateFieldsForApi();
+  const [postCompany, { isLoading, error }] = usePostCompanyMutation();
 
   const handleSubmit = async () => {
     if (status === "success") {
       dispatch(setInitialState());
     } else {
       try {
-        handleApiResponse(await postCompany(createFieldsForApi()).unwrap());
+        handleApiResponse(await postCompany(fields).unwrap());
       } catch (err) {
         console.error(err);
       }
@@ -78,7 +60,7 @@ export const Review = ({}) => {
   useEffect(() => {
     if (error?.status === 500) {
       dispatch(setStatus("error"));
-      setApiMessage(error.message);
+      dispatch(setApiMessage(error.message));
     }
   }, [error]);
 
@@ -86,12 +68,12 @@ export const Review = ({}) => {
     switch (status) {
       case "ok":
         dispatch(setStatus("success"));
-        setApiMessage(message);
+        dispatch(setApiMessage(message));
         break;
 
       case "error":
         dispatch(setStatus("error"));
-        setApiMessage(message);
+        dispatch(setApiMessage(message));
         break;
 
       default:
@@ -99,22 +81,9 @@ export const Review = ({}) => {
     }
   };
 
-  const getAddressformated = (data: any) => {
-    const isAddressAbbrevation = states.find(
-      (s: any) => s.name === data.state
-    )?.abbreviation;
-    return `${data.address} ${data.optionalAddress ?? ""} ${data.city}, ${
-      isAddressAbbrevation ?? ""
-    } ${data.zip}`;
+  const isAddressAbbrevation = () => {
+    return states.find((s) => s.name === state)?.abbreviation;
   };
-
-  const addressformated = getAddressformated({
-    address,
-    optionalAddress,
-    city,
-    state,
-    zip,
-  });
 
   return (
     <Container>
@@ -132,7 +101,11 @@ export const Review = ({}) => {
       </BoxProperties>
       <BoxProperties $bottom>
         <Key>Address:</Key>
-        <Value>{addressformated}</Value>
+        <Value>
+          {`${address} ${optionalAddress ?? ""}`}
+          <br />
+          {`${city}, ${isAddressAbbrevation() ?? ""} ${zip}`}
+        </Value>
       </BoxProperties>
 
       <SubTitleBox>

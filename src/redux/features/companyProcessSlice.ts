@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// localStorage
+import { loadState } from "../local-storage/loadState";
+
 const initialState = {
   step: 1,
   status: "empty",
+  apiMessage: "",
   businessForm: {
     fields: {
       name: "",
@@ -26,9 +30,12 @@ const initialState = {
   },
 };
 
+const preloadSate = loadState() ? loadState() : initialState;
+console.log({ preloadSate });
+
 export const companyProcessSlice = createSlice({
   name: "companyFormProcess",
-  initialState,
+  initialState: preloadSate,
   reducers: {
     setStep: (state, action) => {
       state.step = action.payload;
@@ -48,6 +55,9 @@ export const companyProcessSlice = createSlice({
     setStatus: (state, action) => {
       state.status = action.payload;
     },
+    setApiMessage: (state, action) => {
+      state.apiMessage = action.payload;
+    },
     setInitialState: () => initialState,
   },
 });
@@ -58,6 +68,7 @@ export const {
   setContactForm,
   setStatus,
   setInitialState,
+  setApiMessage,
 } = companyProcessSlice.actions;
 
 export default companyProcessSlice.reducer;

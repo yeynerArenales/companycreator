@@ -1,9 +1,11 @@
+// Components
 import { Review } from '@/components/molecules/Review'
 import { BusinessForm, ContactForm } from '@/components/organism/Forms'
-import { useAppSelector } from '@/redux/hooks'
+// Hooks
+import { useGetState } from "@/hooks";
 
 export const DefaultProcess = () => {
-  const { step } = useAppSelector((state) => state.companyProccessReducer)
+  const { step } = useGetState()
 
   switch (step) {
     case 1:
