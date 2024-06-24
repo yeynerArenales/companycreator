@@ -9,5 +9,5 @@ export const contactFormSchema = object().shape({
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       "Please enter a valid email address"
     ),
-  phone: string().required("Phone is required")
+  phone: string().required("Phone is required").length(9)
 });

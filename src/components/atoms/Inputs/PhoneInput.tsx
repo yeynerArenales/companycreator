@@ -18,7 +18,8 @@ i18nIsoCountries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 // Constants
 import { phonesTypes } from "@/utils/constants";
 
-// Components
+// Errors
+import { InputErrors } from './InputErrors'
 
 interface ICustomPhoneInput {
   label?: string;
@@ -85,6 +86,7 @@ export const CustomPhoneInput: FC<ICustomPhoneInput> = ({
           />
         )}
       />
+      {errors[name] && <InputErrors message={errors[name].message} />}
     </Wrapper>
   );
 };
