@@ -1,19 +1,19 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const companyApi: any = createApi({
-  reducerPath: 'companyAPI',
+  reducerPath: "companyAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://ss-company.free.beeceptor.com'
+    baseUrl: process.env.BASE_URL,
   }),
   endpoints: (builder) => ({
     postCompany: builder.mutation({
       query: (data) => ({
-        url: '/company',
-        method: 'POST',
-        body: data
-      })
-    })
-  })
-}) 
+        url: "/company",
+        method: "POST",
+        body: data,
+      }),
+    }),
+  }),
+});
 
-export const { usePostCompanyMutation } = companyApi
+export const { usePostCompanyMutation } = companyApi;
