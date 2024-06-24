@@ -16,14 +16,14 @@ import { contactFormSchema } from "./validate/schema";
 // Redux
 import { useDispatch } from "react-redux";
 import { setContactForm, setStep } from "@/redux/features/companyProcessSlice";
-import { useAppSelector } from "@/redux/hooks";
+
+// Hooks
+import { useGetState } from "@/hooks";
 
 export const ContactForm = ({}) => {
   const {
-    contactForm: {
-      fields: { name, lastName, email, phone },
-    },
-  } = useAppSelector((state) => state.companyProccessReducer);
+    contactForm: { firstName, lastName, email, phone },
+  } = useGetState();
   const dispatch = useDispatch();
 
   const {
@@ -34,7 +34,7 @@ export const ContactForm = ({}) => {
     criteriaMode: "all",
     resolver: yupResolver(contactFormSchema),
     defaultValues: {
-      name,
+      name: firstName,
       lastName,
       email,
       phone,

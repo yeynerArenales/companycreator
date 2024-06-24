@@ -3,18 +3,20 @@ import { SidebarButton } from "../../atoms/Buttons";
 import { Container, ButtonsBox, SubTitle, SubTitlesBox } from "./styles";
 
 // Redux
-import { useAppSelector } from "@/redux/hooks";
 import { useDispatch } from "react-redux";
 import { setStep } from "@/redux/features/companyProcessSlice";
+
+// Hooks
+import { useGetState } from "@/hooks";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
   const {
     step,
     status,
-    businessForm: { error: businessFormError },
-    contactForm: { error: contactFormError },
-  } = useAppSelector((state) => state.companyProccessReducer);
+    businessForm: { businessFormError },
+    contactForm: { contactFormError },
+  } = useGetState();
 
   const buttons: number[] = [1, 2, 3];
   const subtitles: string[] = [

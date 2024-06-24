@@ -21,17 +21,17 @@ import {
   setStep,
   setStatus,
 } from "@/redux/features/companyProcessSlice";
-import { useAppSelector } from "@/redux/hooks";
 
 // Utils
 import { businessTypes, states } from "@/utils/constants";
 
+// Hooks
+import { useGetState } from "@/hooks";
+
 export const BusinessForm = ({}) => {
   const {
-    businessForm: {
-      fields: { name, type, address, optionalAddress, city, state, zip },
-    },
-  } = useAppSelector((state) => state.companyProccessReducer);
+    businessForm: { name, type, address, optionalAddress, city, state, zip },
+  } = useGetState();
   const dispatch = useDispatch();
 
   const {

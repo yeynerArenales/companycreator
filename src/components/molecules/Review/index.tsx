@@ -17,7 +17,6 @@ import {
 import { states } from "@/utils/constants";
 
 // Redux
-import { useAppSelector } from "@/redux/hooks";
 import { usePostCompanyMutation } from "@/redux/services/companyApi";
 import { useDispatch } from "react-redux";
 import {
@@ -28,7 +27,7 @@ import {
 } from "@/redux/features/companyProcessSlice";
 
 // Hooks
-import { useCreateFieldsForApi } from "@/hooks/useCreateFieldsForApi";
+import { useCreateFieldsForApi, useGetState } from "@/hooks";
 
 interface ApiResponse {
   status: string;
@@ -39,17 +38,13 @@ export const Review = ({}) => {
   const {
     status,
     apiMessage,
-    businessForm: {
-      fields: { name, type, address, optionalAddress, city, state, zip },
-    },
-    contactForm: {
-      fields: { name: firstName, lastName, email, phone },
-    },
-  } = useAppSelector((state) => state.companyProccessReducer);
+    businessForm: { name, type, address, optionalAddress, city, state, zip },
+    contactForm: { firstName, lastName, email, phone },
+  } = useGetState();
   const dispatch = useDispatch();
   const { fields } = useCreateFieldsForApi();
-
   const [postCompany, { isLoading, error }] = usePostCompanyMutation();
+
   const handleSubmit = async () => {
     if (status === "success") {
       dispatch(setInitialState());
